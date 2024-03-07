@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  nginx-rtmp:
+    container_name: nginx-rtmp
+    build:
+      context: ./nginx-rtmp
+    ports:
+      - "1935:1935"
+      - "80:80"
+    restart: always
+    volumes:
+      - nginx_data:/usr/local/nginx/logs
+    networks:
+      - nginx_network
+
+volumes:
+  nginx_data:
+
+networks:
+  nginx_network:
+    driver: bridge
